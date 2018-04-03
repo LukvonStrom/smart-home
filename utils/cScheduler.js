@@ -1,7 +1,6 @@
 const isOnline = require('is-online');
 
 const request = require("request-promise-native");
-const alertEmitter = require("../actions/telegram/alertEmitter");
 
 
 let timers = [];
@@ -26,7 +25,7 @@ let isoff;
         let ownp = setInterval(() => {
             if (isoff) {
                 isOnline({timeout: 250}).then(online => {
-                    alertEmitter.i();
+                    alerter.i();
                     process.exit();
                 }).catch(() => {
                 })

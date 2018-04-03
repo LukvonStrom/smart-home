@@ -4,7 +4,6 @@ const logout = require('./modules/lightify-logout');
 const power = require('./modules/lightify-change-power');
 
 const utils = require('../../utils/util');
-const alertEmitter = require("../telegram/alertEmitter");
 
 
 
@@ -22,7 +21,7 @@ module.exports = async () => {
             let status = utils.bn(light.on);
             arr.push({id: light.deviceId, power: status});
             power(secToken, light.deviceId, status);
-            alertEmitter.emi({
+            alerter.emi({
                 msg: utils.sc(utils.r(light.name), ' angeschaltet: ', utils.b(light.on !== 1)),
                 verbose: false
             });

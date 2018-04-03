@@ -1,5 +1,4 @@
 const util = require("../../utils/util");
-const alertEmitter = require("../telegram/alertEmitter");
 const {Client} = require('tplink-smarthome-api');
 
 const client = new Client();
@@ -17,6 +16,6 @@ module.exports = async () => {
     let sysInfo = await plug.getSysInfo();
     let state = util.ib(sysInfo.relay_state);
     await plug.setPowerState(state);
-    alertEmitter.emi({msg: 'Toggled the Plug', verbose: true});
+    alerter.emi({msg: 'Toggled the Plug', verbose: true});
     return state;
 };

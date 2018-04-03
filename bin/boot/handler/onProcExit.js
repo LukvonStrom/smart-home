@@ -1,7 +1,7 @@
-module.exports = (alertEmitter) => {
+module.exports = () => {
     process.stdin.resume();
     function exitHandler() {
-        alertEmitter.s();
+        alerter.s();
         setTimeout(() => {
             process.exit();
         }, 1000)

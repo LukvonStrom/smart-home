@@ -12,6 +12,8 @@ const procExit = require('./boot/handler/onProcExit')(alertEmitter);
 
 let port = normalizePort('80');
 
+global.alerter = alertEmitter;
+
 /**
  * Create HTTP and Socket.IO server.
  */
@@ -29,10 +31,9 @@ server.on('listening', () => {
     console.log('Listening on ' + bind);
 });
 
-// global.app = app;
-global.alerter = alertEmitter;
-// alertEmitter.b();
+global.app = app;
+alerter.b();
 
 spotify_socket_server(io);
-// procExit(alertEmitter);
+procExit(alerter);
 
