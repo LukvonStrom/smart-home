@@ -250,3 +250,5 @@ lib/
 *.iml
 out
 gen
+
+.env.example
