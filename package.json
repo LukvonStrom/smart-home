@@ -1,0 +1,35 @@
+{
+  "name": "node-api-boilerplate",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "*",
+    "celebrate": "^7.0.4",
+    "cheerio": "^1.0.0-rc.2",
+    "cookie-parser": "*",
+    "debug": "*",
+    "dotenv": "^4.0.0",
+    "dsbclient": "^1.3.1",
+    "etag": "^1.8.1",
+    "express": "*",
+    "fancy-log": "^1.3.2",
+    "hbs": "*",
+    "is-online": "^7.0.0",
+    "lowdb": "^1.0.0",
+    "morgan": "*",
+    "node-lightify": "^2.1.10",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5",
+    "serve-favicon": "*",
+    "socket.io": "^2.0.4",
+    "socket.io-client": "^2.0.4",
+    "spotify-web-api-node": "^2.5.0",
+    "telegraf": "^3.17.5",
+    "tplink-smarthome-api": "^0.22.0",
+    "wintools": "^0.1.0",
+    "wunderground": "0.0.0"
+  }
+}
