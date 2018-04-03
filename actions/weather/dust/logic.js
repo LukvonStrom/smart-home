@@ -7,8 +7,7 @@ let o = {p1: [], p2: []};
 module.exports = async () => {
 
     await Promise.all(
-        urls.map(
-            async (url) => {
+        urls.map(async (url) => {
                 let data = await request({
                         method: 'GET',
                         uri: url,

@@ -9,7 +9,7 @@ const alertEmitter = require("../telegram/alertEmitter");
 
 
 module.exports = async () => {
-    return new Promise(resolve => {
+    return new Promise(async resolve => {
         let secToken = await securityToken();
 
         let device_array = await devices(secToken);
@@ -22,7 +22,10 @@ module.exports = async () => {
             let status = utils.bn(light.on);
             arr.push({id: light.deviceId, power: status});
             power(secToken, light.deviceId, status);
-            alertEmitter.emi({msg: utils.sc(utils.r(light.name), ' angeschaltet: ', utils.b(light.on !== 1)), verbose: false});
+            alertEmitter.emi({
+                msg: utils.sc(utils.r(light.name), ' angeschaltet: ', utils.b(light.on !== 1)),
+                verbose: false
+            });
             devices_counter++;
         });
 
