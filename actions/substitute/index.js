@@ -1,6 +1,4 @@
 const init = require('./logic');
+const sharedLogic = require('../../utils/sharedLogic');
 
-module.exports = async (req, res) => {
-    let result = await Promise.all([init("J2"), init("9c")]);
-    res.json({status: result});
-};
+module.exports = (req, res) => sharedLogic(res, async () => await Promise.all([init("J2"), init("9c")]),'substitute_status');

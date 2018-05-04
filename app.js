@@ -32,6 +32,8 @@ app.get('/', (req, res) => {
     res.json(JSON.parse(process.env.song));
 });
 
+app.get('/dust', require('./actions/weather/dust'))
+
 
 // catch 404 and forward to error handler
 /*

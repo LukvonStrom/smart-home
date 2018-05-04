@@ -29,7 +29,10 @@ function bool_to_num(num) {
     return num === 0;
 }
 
-function median(values) {
+function median(string_values) {
+    let values = string_values.map(x => {
+        return parseFloat(x);
+    });
     values.sort(function (a, b) {
         return a - b;
     });

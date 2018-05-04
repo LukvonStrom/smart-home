@@ -1,6 +1,4 @@
-const logic = require('./logic');
+const sharedLogic = require('../../utils/sharedLogic');
 
-module.exports = async (req, res) => {
-    let result = await logic();
-    res.json({weather: result});
-};
+module.exports = (req, res) => sharedLogic(res, require('./logic'),'weather');
+

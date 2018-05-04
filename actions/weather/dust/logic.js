@@ -15,10 +15,22 @@ module.exports = async () => {
                             {'Content-Type': 'application/json'},
                         json: true
                 });
-                [0, 1].map(x => {
-                    [1, 2].map(n => o[`p${n}`].push(data[x].sensordatavalues[n].value))
-                })
+                Raven.context(() => {
+                    Raven.captureBreadcrumb({
+                        message: 'Luftdaten Response',
+                        data: data
+                    });
+                    [0, 1].map(x => {
+                            [1, 2].map(n => {
+                                    if (x in data
+                                        && n in data[x].sensordatavalues
+                                        && data[x].sensordatavalues[n].hasOwnProperty("value")){
+                                        o[`p${n}`].push(data[x].sensordatavalues[n].value);
+                                    }
+                            })
+                            })
+                    })
+                }));
 
-            }));
-    return {p1: utils.m(o.p1), p2: utils.m(o.p2)};
+    return {p1: utils.m(o.p1), p2: /*utils.m(*/o.p2/*)*/};
 };

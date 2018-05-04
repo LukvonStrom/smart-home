@@ -7,33 +7,46 @@ const alertEmitter = require('../actions/telegram/alertEmitter');
 const normalizePort = require('./boot/normalizePort');
 const onError = require('./boot/handler/onError');
 const spotify_socket_server = require('../actions/spotify/logic');
-const procExit = require('./boot/handler/onProcExit')(alertEmitter);
+require('./boot/handler/onProcExit')(alertEmitter);
+require('dotenv').config();
+const Raven = require('raven');
 // /Dependencies
 
 let port = normalizePort('80');
+// console.log(process.env);
+
+Raven.config(process.env.SENTRY_DSN, {
+    captureUnhandledRejections: true,
+    autoBreadcrumbs: true
+}).install();
+global.Raven = Raven;
 
 global.alerter = alertEmitter;
 
-/**
- * Create HTTP and Socket.IO server.
- */
-app.set('port', port);
-let server = http.createServer(app);
-const io = require('socket.io')(server);
-server.listen(port);
+Raven.context(() => {
 
-server.on('error', onError);
-server.on('listening', () => {
-    let addr = server.address();
-    let bind = typeof addr === 'string'
-        ? 'pipe ' + addr
-        : 'port ' + addr.port;
-    console.log('Listening on ' + bind);
+    /**
+     * Create HTTP and Socket.IO server.
+     */
+    app.set('port', port);
+    let server = http.createServer(app);
+    const io = require('socket.io')(server);
+    server.listen(port);
+
+    server.on('error', onError);
+    server.on('listening', () => {
+        let addr = server.address();
+        let bind = typeof addr === 'string'
+            ? 'pipe ' + addr
+            : 'port ' + addr.port;
+        console.log('Listening on ' + bind);
+    });
+
+    global.app = app;
+    alerter.b();
+
+    spotify_socket_server(io);
+
 });
 
-global.app = app;
-alerter.b();
-
-spotify_socket_server(io);
-procExit(alerter);
 
