@@ -28,7 +28,7 @@
     "socket.io": "2.0.4",
     "socket.io-client": "2.0.4",
     "spotify-web-api-node": "2.5.0",
-    "telegraf": "3.17.5",
+    "telegraf": "3.21.2",
     "tplink-smarthome-api": "0.22.0",
     "wintools": "0.1.0",
     "wunderground": "0.0.0"
