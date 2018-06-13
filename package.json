@@ -20,7 +20,7 @@
     "is-online": "7.0.0",
     "lowdb": "1.0.0",
     "morgan": "*",
-    "node-lightify": "2.1.10",
+    "node-lightify": "2.1.13",
     "raven": "2.6.2",
     "request": "2.87.0",
     "request-promise-native": "1.0.5",
