@@ -29,7 +29,7 @@
     "socket.io-client": "2.1.1",
     "spotify-web-api-node": "3.1.1",
     "telegraf": "3.21.2",
-    "tplink-smarthome-api": "0.22.0",
+    "tplink-smarthome-api": "2.0.0",
     "wintools": "0.1.0",
     "wunderground": "0.0.0"
   }
